@@ -1,0 +1,5 @@
+/node_modules
+
+# we can generate dist and parcel cache from "npx parcel index.html"
+/dist
+/.parcel-cache
