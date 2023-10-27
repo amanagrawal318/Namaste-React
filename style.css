@@ -52,3 +52,7 @@
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
 }
+.filter-btn{
+  margin: 10px;
+  cursor: pointer;
+}
