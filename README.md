@@ -19,3 +19,10 @@
 - Tree Shaking- remove unused code
 - different dev and prod build
 
+# Chapter 6
+- micro service/ monolith architecture
+- Api data fetch
+- CORS chrome extension
+- Shimmer UI
+- useState/useEffect
+- Search functionality
