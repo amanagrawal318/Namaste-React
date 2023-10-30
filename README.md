@@ -26,3 +26,9 @@
 - Shimmer UI
 - useState/useEffect
 - Search functionality
+
+# chapter 7
+- Routing using react-router-dom
+- dynamic routing
+- client side routing - Dynamically update the content of SPA w.r.to URL - Dont do full page reloads
+- Server side Routing - all pages comes from server -make network call get HTML/CSS/JS and loads the whole page
