@@ -49,3 +49,14 @@
   - componentWillUnmount
 - Render/commit phase [link](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram)
 - setinterval/clearinterval in didMount/willUnmount
+
+# chapter 9
+
+- custom hooks
+- implement online/offline status
+- implement restaurantMenu/List of restaurant custom hooks
+- In browser we get the large bundle of Index.js so we want to reduce to optimize the performance
+- we use lazy loading to get small chunks of js bundle on going to that components
+- Lazy loading
+- suspense - fallback
+- online/offline/slow 3g feature in dev tools

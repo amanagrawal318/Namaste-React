@@ -3,30 +3,16 @@ import { useEffect, useState } from "react";
 import { swiggy_api_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useListOfRestaurant from "../utils/useListOfRestaurant";
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurant] = useState([]);
-  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
-
+  //custom hooks
+  const [listOfRestaurants, filteredRestaurantList, setFilteredRestaurantList] =
+    useListOfRestaurant();
   const [searchText, setSearchText] = useState("");
-  useEffect(() => {
-    console.log("useefeect");
-    fetchSwiggyData();
-  }, []);
 
-  const fetchSwiggyData = async () => {
-    const res = await fetch(swiggy_api_URL);
-    const data = await res.json();
-    console.log(
-      data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-    );
-    //optional chaining
-    setListOfRestaurant(
-      data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurantList(
-      data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) return <h1>Please Check your Internet Connection</h1>;
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
