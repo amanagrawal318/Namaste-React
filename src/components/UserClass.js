@@ -39,7 +39,7 @@ class UserClass extends React.Component {
     const { login, id } = this.state.userInfo;
     // debugger
     return (
-      <div className="user-card">
+      <div className="user-card border border-solid border-black p-[10px] w-1/2">
         <h1>Name : {login}</h1>
         <h2>id : {id}</h2>
         <h2>State : Madhya Pradesh</h2>

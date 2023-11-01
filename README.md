@@ -60,3 +60,10 @@
 - Lazy loading
 - suspense - fallback
 - online/offline/slow 3g feature in dev tools
+
+# chapter 10
+
+- install Tailwind css
+- tailwindcss.com -> choose framework(parcel) -> follow steps
+- create index.css -> input some tailwind line into it - reference
+- install tailwind css intellisense extension in vs code
