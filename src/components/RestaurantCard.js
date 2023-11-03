@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 
-const RestaurantCard = ({ resData }) => {
+export const RestaurantCard = ({ resData }) => {
   console.log(resData);
   const { name, cuisines, avgRating, cloudinaryImageId, costForTwo } =
     resData.info;
@@ -20,4 +20,18 @@ const RestaurantCard = ({ resData }) => {
   );
 };
 
+// higher order function
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        {console.log("hello")}
+        <label className="absolute bg-[black] text-[white] m-1 px-1;">
+          Fast Delivery
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 export default RestaurantCard;

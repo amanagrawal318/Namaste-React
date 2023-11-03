@@ -1,19 +1,21 @@
-import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { RestaurantCard, withPromotedLabel } from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
 import { swiggy_api_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useListOfRestaurant from "../utils/useListOfRestaurant";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   //custom hooks
   const [listOfRestaurants, filteredRestaurantList, setFilteredRestaurantList] =
     useListOfRestaurant();
   const [searchText, setSearchText] = useState("");
-
+  const RestaurantWithPromoted = withPromotedLabel(RestaurantCard);
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) return <h1>Please Check your Internet Connection</h1>;
 
+  const { loginUser, setUserName } = useContext(UserContext);
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -51,7 +53,7 @@ const Body = () => {
           </button>
         </div>
         <div className="p-[10px]">
-          <button 
+          <button
             className="filter-btn m-2 cursor-pointer px-2 py-1 rounded-lg border bg-gray-700 text-white"
             onClick={() =>
               setFilteredRestaurantList(
@@ -62,6 +64,15 @@ const Body = () => {
             Top Rated Restaurant
           </button>
         </div>
+        <div className="search p-[10px]">
+          <label>LoginInUser </label>
+          <input
+            type="text"
+            className="search-box border border-solid border-black px-2 py-1 overflow-hidden rounded-lg my-1"
+            value={loginUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="res-container flex flex-wrap items-center ">
         {filteredRestaurantList.map((restaurant) => (
@@ -69,7 +80,12 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {/* ....higher order function */}
+            {restaurant.info.sla.deliveryTime <= 20 ? (
+              <RestaurantWithPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

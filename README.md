@@ -67,3 +67,17 @@
 - tailwindcss.com -> choose framework(parcel) -> follow steps
 - create index.css -> input some tailwind line into it - reference
 - install tailwind css intellisense extension in vs code
+
+# chapter 11
+
+- HOC- Higher Order Component
+- HOC- To enhance the component and give it back
+- create Accordian of category
+- Data layer/UI layer
+- react dev tools extension- components- profiler features
+- lifting the state up
+- controlled and uncontrolled components
+- Props drilling- passing props to 1st level to 3rd ya 4th level meanwhile b/w child is of no use of props
+- useContext to resolve props drilling
+- UserContext.provider / UserContext.consumer
+- tied state variable to user context

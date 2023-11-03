@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 /*FoodVilla App/Swiggy clone
  * Header
  *   -Logo
@@ -34,11 +35,25 @@ import RestaurantMenu from "./components/RestaurantMenu";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState("");
+
+  //authentication code
+  useEffect(() => {
+    const name = "Aman";
+    setUserName(name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    //loginuser=default user
+    <UserContext.Provider value={{ loginUser: userName, setUserName }}>
+      {/* loginuser= aman */}
+      <div className="app">
+        <UserContext.Provider value={{ loginUser: "Elonmusk" }}>
+          {/* loginuser=elon musk */}
+          <Header />
+        </UserContext.Provider>
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 const appRouter = createBrowserRouter([
