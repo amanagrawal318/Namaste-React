@@ -8,6 +8,9 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./redux/appStore";
+import Cart from "./components/Cart";
 /*FoodVilla App/Swiggy clone
  * Header
  *   -Logo
@@ -44,16 +47,18 @@ const AppLayout = () => {
   }, []);
   return (
     //loginuser=default user
-    <UserContext.Provider value={{ loginUser: userName, setUserName }}>
-      {/* loginuser= aman */}
-      <div className="app">
-        <UserContext.Provider value={{ loginUser: "Elonmusk" }}>
-          {/* loginuser=elon musk */}
-          <Header />
-        </UserContext.Provider>
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loginUser: userName, setUserName }}>
+        {/* loginuser= aman */}
+        <div className="app">
+          <UserContext.Provider value={{ loginUser: "Elonmusk" }}>
+            {/* loginuser=elon musk */}
+            <Header />
+          </UserContext.Provider>
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
@@ -85,6 +90,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

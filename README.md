@@ -81,3 +81,16 @@
 - useContext to resolve props drilling
 - UserContext.provider / UserContext.consumer
 - tied state variable to user context
+
+# chapter 12
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- Slice - cartslice- created cartslice
+- dispatch(action)
+- Selector
+- redux toolkit provides better and simple way to write redux
+- redux toolkit uses Immer library
+- redux toolkit mutate the data - older version doesnot mutable
+- redux dev tools
