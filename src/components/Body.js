@@ -6,10 +6,29 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useListOfRestaurant from "../utils/useListOfRestaurant";
 import UserContext from "../utils/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchRestaurants,
+  filterResListOnSearch,
+  filterTopRatedRestaurant,
+} from "../redux/restaurantsSlice";
 const Body = () => {
-  //custom hooks
-  const [listOfRestaurants, filteredRestaurantList, setFilteredRestaurantList] =
-    useListOfRestaurant();
+  //subscribing to the store
+  const listOfRestaurants = useSelector(
+    (state) => state.restaurants.listOfRestaurants
+  );
+  const filteredRestaurantList = useSelector(
+    (state) => state.restaurants.filteredRestaurants
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //fetch restaurants from api by redux
+    dispatch(fetchRestaurants());
+  }, []);
+
+  // console.log(listOfRestaurants);
   const [searchText, setSearchText] = useState("");
   const RestaurantWithPromoted = withPromotedLabel(RestaurantCard);
   const onlineStatus = useOnlineStatus();
@@ -28,25 +47,16 @@ const Body = () => {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              const filteredList = listOfRestaurants.filter((res) => {
-                return res.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase());
-              });
-              setFilteredRestaurantList(filteredList);
-              if (e.target.value === "")
-                setFilteredRestaurantList(listOfRestaurants);
+              dispatch(filterResListOnSearch(searchText));
+              {
+                e.target.value === "" && dispatch(filterResListOnSearch(""));
+              }
             }}
           />
           <button
             className="px-2 py-1 m-2 rounded-lg border bg-gray-700 text-white"
             onClick={() => {
-              const filteredList = listOfRestaurants.filter((res) => {
-                return res.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase());
-              });
-              setFilteredRestaurantList(filteredList);
+              dispatch(filterResListOnSearch(searchText));
             }}
           >
             search
@@ -55,11 +65,7 @@ const Body = () => {
         <div className="p-[10px]">
           <button
             className="filter-btn m-2 cursor-pointer px-2 py-1 rounded-lg border bg-gray-700 text-white"
-            onClick={() =>
-              setFilteredRestaurantList(
-                listOfRestaurants.filter((res) => res.info.avgRating > 4.3)
-              )
-            }
+            onClick={() => dispatch(filterTopRatedRestaurant(4.3))}
           >
             Top Rated Restaurant
           </button>

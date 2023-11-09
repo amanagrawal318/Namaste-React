@@ -103,3 +103,7 @@
 - used thunk to get api data
 - use createAsyncThunk to fetch API data of restaurant menu and stored in redux
 - After that categories and restaurant info is subscribed throught the store
+- Axios library used
+- fetch Swiggy restaurant data from api
+- stored restaurants in redux using createAsyncThunk
+- also creted some reducer to manage restaurant on search and top rated restaurants

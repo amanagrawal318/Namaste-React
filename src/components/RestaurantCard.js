@@ -1,7 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 
 export const RestaurantCard = ({ resData }) => {
-  console.log(resData);
+  // console.log(resData);
   const { name, cuisines, avgRating, cloudinaryImageId, costForTwo } =
     resData.info;
   return (
@@ -25,7 +25,7 @@ export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        {console.log("hello")}
+        {/* {console.log("hello")} */}
         <label className="absolute bg-[black] text-[white] m-1 px-1;">
           Fast Delivery
         </label>
