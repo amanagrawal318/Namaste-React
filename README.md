@@ -94,3 +94,12 @@
 - redux toolkit uses Immer library
 - redux toolkit mutate the data - older version doesnot mutable
 - redux dev tools
+
+# redux thunk / middleware
+
+- fetch Api data through redux
+- created menuslice
+- apply middleware
+- used thunk to get api data
+- use createAsyncThunk to fetch API data of restaurant menu and stored in redux
+- After that categories and restaurant info is subscribed throught the store

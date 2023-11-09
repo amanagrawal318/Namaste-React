@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMenus } from "../redux/menuSlice";
 const RestaurantMenu = () => {
+  const dispatch = useDispatch();
   const [showIndex, setShowIndex] = useState(null);
   const { resId } = useParams();
   //custom hooks
-  const resInfo = useRestaurantMenu(resId);
+  // const resInfo = useRestaurantMenu(resId);
+  //subscribing to the store
+  const resInfo = useSelector((state) => state.menus.resMenuInfo);
+  const categories = useSelector((state) => state.menus.categories);
 
-  if (resInfo == null) return <Shimmer />;
+  // console.log("hello -> before useefeect " + resInfo);
 
-  const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards[0]?.card?.card?.info;
+  useEffect(() => {
+    //fetch menu from api using redux thunk
+    dispatch(fetchMenus(resId));
+  }, []);
+  // const jsonInf = JSON.stringify(info);
+  // console.log("ResInfo -> " + jsonInf);
+  // console.log("loading -> " + loading);
 
-  const categories =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-      (c) =>
-        c.card?.card?.["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    );
+  if (resInfo === null) return <h1>loading....</h1>;
+
+  const { name, cuisines, costForTwoMessage } = resInfo;
   console.log(categories);
 
   return (
     <div className="menu text-center">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <p className="font-bold text-lg">
-        {cuisines.join(", ")} • {costForTwoMessage}
+        {cuisines?.join(", ")} • {costForTwoMessage}
       </p>
       {/* catogories */}
       {categories.map((category, index) => {
@@ -43,15 +51,6 @@ const RestaurantMenu = () => {
           />
         );
       })}
-      {/* <h2>Menu</h2>
-      <ul>
-        {itemCards?.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{" Rs."}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };
