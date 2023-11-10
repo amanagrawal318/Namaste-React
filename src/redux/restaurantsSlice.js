@@ -24,9 +24,14 @@ const restaurantsSlice = createSlice({
   reducers: {
     filterResListOnSearch: (state, action) => {
       const list = state.listOfRestaurants.filter((res) => {
-        return res?.info?.name
-          .toLowerCase()
-          .includes(action.payload.toLowerCase());
+        return (
+          res?.info?.name
+            .toLowerCase()
+            .includes(action.payload.toLowerCase()) ||
+          res?.info?.cuisines.find((cuisine) =>
+            cuisine.toLowerCase().includes(action.payload.toLowerCase())
+          )
+        );
       });
       state.filteredRestaurants = list;
     },
