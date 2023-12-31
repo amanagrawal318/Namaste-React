@@ -37,11 +37,12 @@ const Body = () => {
   const { loginUser, setUserName } = useContext(UserContext);
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
-  ) : (
+  ) : ( 
     <div className="body">
       <div className="filter flex">
         <div className="search p-[10px]">
           <input
+            data-testid="searchText"
             type="text"
             className="search-box border border-solid border-black p-1 overflow-hidden rounded-lg "
             value={searchText}
@@ -53,7 +54,7 @@ const Body = () => {
               }
             }}
           />
-          <button
+          <button data-testid="searchBtn"
             className="px-2 py-1 m-2 rounded-lg border bg-gray-700 text-white"
             onClick={() => {
               dispatch(filterResListOnSearch(searchText));
@@ -96,7 +97,7 @@ const Body = () => {
         ))}
       </div>
     </div>
-  );
+);
 };
 
 export default Body;

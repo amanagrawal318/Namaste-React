@@ -4,6 +4,7 @@ import Mock_Res_card from "./MockData/RestaurantCardMock.json"
 import { withPromotedLabel } from "./RestaurantCard"
 import "@testing-library/jest-dom"
 
+
 it("should Render RestaurantCard component with prop data", ()=>{
     render(<RestaurantCard resData={Mock_Res_card}/>)
     const resname=screen.getByText("Pizza Hut")
