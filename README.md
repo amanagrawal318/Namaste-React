@@ -107,3 +107,8 @@
 - fetch Swiggy restaurant data from api
 - stored restaurants in redux using createAsyncThunk
 - also creted some reducer to manage restaurant on search and top rated restaurants
+
+# Types of Testing(Developer)
+- Unit Testing
+- Integration testing
+- End to End Testing- e2e testing
