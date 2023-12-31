@@ -49,9 +49,9 @@ const restaurantsSlice = createSlice({
     });
     builder.addCase(fetchRestaurants.fulfilled, (state, action) => {
       state.listOfRestaurants =
-        action.payload?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        action.payload?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       state.filteredRestaurants =
-        action.payload?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        action.payload?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     });
     builder.addCase(fetchRestaurants.rejected, (state, action) => {
       state.error = true;
