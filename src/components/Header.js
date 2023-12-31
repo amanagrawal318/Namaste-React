@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
-import swiggyLogo from "../utils/swiggyLogo.svg";
-import "./ButtonCss.css";
+// import swiggyLogo from "../utils/swiggyLogo.svg";
+// import "./ButtonCss.css";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
@@ -19,7 +19,7 @@ const Header = () => {
       <div className="logo-container h-full ">
         <Link to="/">
           <img
-            src={swiggyLogo}
+            src={LOGO_URL}
             alt="Logo_Image"
             className="logo w-full h-full px-[30px]"
           />

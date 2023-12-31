@@ -107,3 +107,20 @@
 - fetch Swiggy restaurant data from api
 - stored restaurants in redux using createAsyncThunk
 - also creted some reducer to manage restaurant on search and top rated restaurants
+
+# Types Of Testing(Developer)
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+# Setting Testing in React App
+- Install react testing library
+- Install jest
+- Install Babel dependenci in jest (read docs for jest )
+- Configure Babel.config.js
+- configure parcelrc to disable default babel transpilation
+- jest configuration- npx jest --init
+- install js-dom library bcoz jest >28.0.0
+- Install @babel/preset-react - to make jsx in test cases
+- add configurationnin babelconfig
+- Install @testing-library/jest-dom
