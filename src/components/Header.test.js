@@ -39,4 +39,29 @@ describe("Header component",()=>{
         const logOutButton=screen.getByRole('button',{name:"Logout"})
         expect(logOutButton).toBeInTheDocument();
     });
+
+    it("Should change to login when button is clicked on logout",()=>{
+      render(<BrowserRouter>
+        <Provider store={appStore}>
+           <Header/>
+        </Provider>
+      </BrowserRouter>)
+      
+      const loginButton=screen.getByRole('button',{name:"Login"})
+      fireEvent.click(loginButton)
+      const logOutButton=screen.getByRole('button',{name:"Logout"})
+      fireEvent.click(logOutButton)
+      expect(loginButton).toBeInTheDocument();
+  });
+
+  it("Should render online status" ,()=>{
+    render(<BrowserRouter>
+      <Provider store={appStore}>
+         <Header/>
+      </Provider>
+    </BrowserRouter>)
+
+    const result=screen.getByText("Online🟢");
+    expect(result).toBeInTheDocument();
+  })
 })

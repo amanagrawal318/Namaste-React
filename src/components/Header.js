@@ -27,7 +27,7 @@ const Header = () => {
       </div>
       <div className="nav-items px-16">
         <ul className="flex list-none text-2xl">
-          <li className="p-2 m-2 dark:text-white">
+          <li data-testid="onlineStatus" className="p-2 m-2 dark:text-white">
             {onlineStatus ? "Online🟢" : "Offline🔴"}
           </li>
           <li className="p-2 m-2 dark:text-white">
