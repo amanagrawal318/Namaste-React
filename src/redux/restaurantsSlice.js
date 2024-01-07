@@ -6,7 +6,7 @@ import axios from "axios";
 export const fetchRestaurants = createAsyncThunk("restaurants", async () => {
   try {
     const response = await axios.get(swiggy_api_URL);
-    console.log(response);
+    console.log("swiggy data "+response);
     return response.data;
   } catch (error) {
     console.error("error -> " + error);
@@ -49,9 +49,9 @@ const restaurantsSlice = createSlice({
     });
     builder.addCase(fetchRestaurants.fulfilled, (state, action) => {
       state.listOfRestaurants =
-        action.payload?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        action.payload?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       state.filteredRestaurants =
-        action.payload?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        action.payload?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     });
     builder.addCase(fetchRestaurants.rejected, (state, action) => {
       state.error = true;
